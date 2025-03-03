@@ -1,0 +1,68 @@
+/* Global styles for the entire application */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); /* Import Google Font Poppins */
+@import "tailwindcss"; /* Import Tailwind CSS 4.0 */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body, html { 
+  font-family: 'Poppins', sans-serif;
+  background-color: #0d0d0d;
+  margin: 0;
+  padding: 0;
+}
+
+/* Animations for the meteor and twinkle section behind the emoji in introduction section */
+@keyframes meteor {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-500px) translateY(500px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Animation used to create a continuous horizontal scroll of technology logos/icons */
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+/* Scrollbar styling for light- & dark mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}

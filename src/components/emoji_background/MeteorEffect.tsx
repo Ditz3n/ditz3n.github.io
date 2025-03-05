@@ -1,70 +1,42 @@
-// MeteorEffect.tsx | A component that creates a meteor effect in the background of the emoji in the IntroductionSection.tsx component
-import { useEffect, useState } from "react";
+// MeteorEffect.tsx | A component that creates a meteor effect with a specified number of meteors (used in SpaceBackground.tsx)
+import clsx from "clsx";
 
-// interface for MeteorProps
-interface MeteorProps {
-  number?: number;
-}
-
-// interface for MeteorData
-interface MeteorData {
-  id: number;
-  top: string;
-  left: string;
-  delay: string;
-  duration: string;
-  size: number;
-}
-
-export function Meteor({ number = 20 }: MeteorProps) {
-  const [meteors, setMeteors] = useState<MeteorData[]>([]);
-
-  useEffect(() => {
-    // Generate meteors with different positions and delays
-    // This function generates random meteors
-    const generateMeteors = (): MeteorData[] => {
-      return Array.from({ length: number }, (_, i) => ({
-        id: i,
-        top: Math.floor(Math.random() * 100) + "%",
-        left: Math.floor(Math.random() * 100) + "%",
-        delay: Math.random() * 5 + "s", // Random delay between 0-5 seconds
-        duration: Math.random() * 2 + 2 + "s", // Duration between 2-4 seconds
-        size: Math.floor(Math.random() * 2) + 1, // Size 1 or 2
-      }));
-    };
-
-    setMeteors(generateMeteors());
-    
-    // Generate meteors periodically
-    const intervalId = setInterval(() => {
-      setMeteors(generateMeteors());
-    }, 10000); // Every 10 seconds (10000ms)
-    // Clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, [number]);
-
+export const MeteorEffect = ({ number }: { number?: number }) => {
+  const meteors = new Array(number || 20).fill(true);
+  
+  // Defining minimum and maximum values for meteor animation
+  const MIN_DURATION = 8; // Minimum animation duration in seconds
+  const MAX_DURATION = 14; // Maximum animation duration in seconds
+  const MIN_DELAY = 0.2; // Minimum animation delay in seconds
+  const MAX_DELAY = 0.8; // Maximum animation delay in seconds
+  const MIN_TRAVEL = -400; // Minimum starting position (pixels)
+  const MAX_TRAVEL = 400; // Maximum starting position (pixels)
+  
   return (
     <>
-      {meteors.map((meteor) => (
-        <div
-          key={meteor.id}
-          className="absolute h-0.5 w-0.5 rounded-full bg-white pointer-events-none"
-          style={{
-            top: meteor.top,
-            left: meteor.left,
-            boxShadow: "0 0 0 1px #ffffff10",
-            transform: "rotate(-45deg)",
-            animation: `meteor ${meteor.duration} ${meteor.delay} linear infinite`,
-          }}
-        >
-          <div
-            className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-white via-white to-transparent pointer-events-none"
+      {meteors.map((_, index) => {
+        // Calculate random values with minimum thresholds
+        const duration = Math.floor(Math.random() * (MAX_DURATION - MIN_DURATION) + MIN_DURATION);
+        const delay = Math.random() * (MAX_DELAY - MIN_DELAY) + MIN_DELAY;
+        const leftPosition = Math.floor(Math.random() * (MAX_TRAVEL - MIN_TRAVEL) + MIN_TRAVEL);
+        
+        return (
+          <span
+            key={`meteor-${index}`}
+            className={clsx(
+              "absolute h-0.5 w-0.5 rounded-full bg-white shadow-[0_0_0_3px_#ffffff10] rotate-[195deg]",
+              "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[50px] before:h-[3px] before:bg-gradient-to-r before:from-[#ffffff] before:to-transparent"
+            )}
             style={{
-              width: meteor.size === 1 ? "100px" : "150px",
+              top: -10, // Initial position (pixels) (above the container so it's not visible on load)
+              left: `${leftPosition}px`,
+              animationDelay: `${delay}s`,
+              animationDuration: `${duration}s`,
+              animation: `meteor ${duration}s linear ${delay}s infinite`,
             }}
-          ></div>
-        </div>
-      ))}
+          ></span>
+        );
+      })}
     </>
   );
-}
+};

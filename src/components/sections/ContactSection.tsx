@@ -1,7 +1,7 @@
 // ContactSection.tsx | A section with a button to open the ContactModal.tsx to contact the developer (me)
-import emoji6 from '../../assets/images/emoji6.png';
 import { useLanguage } from '../../hooks/useLanguage';
 import ContactButton from '../reusable/ContactButton';
+import emoji_call_me_1280x1280 from '../../assets/images/emoji_call_me_1280x1280.png';
 
 export default function ContactSection() {
   const { language } = useLanguage();
@@ -31,14 +31,11 @@ export default function ContactSection() {
           <div className="relative w-full max-w-[300px] order-1 lg:order-2">
             {/* Using order-1 on mobile, so the image is on top, but order-2 on desktop, so it's to the right */}
             <img 
-              src={emoji6} 
+              src={emoji_call_me_1280x1280} 
               alt="Emoji 6" 
               className="w-full h-full object-contain relative z-10" 
               style={{
-                height: '291px',
-                maskImage: 'linear-gradient(180deg, #000000 60.2882179054054%, rgba(0, 0, 0, 0) 100%)',
-                overflow: 'visible',
-                width: '270px',
+                maskImage: 'linear-gradient(180deg, #000000 60%, rgba(0, 0, 0, 0) 100%)',
                 zIndex: 5,
               }}
             />

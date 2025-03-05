@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
-import emoji5 from '../../assets/images/emoji5.png';
 import emailjs from '@emailjs/browser';
+import emoji_idea_640x640 from '../../assets/images/emoji_idea_640x640.png';
 
 // Interface for ContactModalProps
 interface ContactModalProps {
@@ -157,7 +157,7 @@ export default function ContactModal({ isOpen, setIsOpen }: ContactModalProps) {
             
             <div className="flex flex-col items-center pt-6 pb-6 px-6">
                 <img 
-                    src={emoji5} 
+                    src={emoji_idea_640x640} 
                     alt="Chat emoji" 
                     className={`object-contain w-40 h-40`}
                 />

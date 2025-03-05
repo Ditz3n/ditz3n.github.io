@@ -1,5 +1,5 @@
 // HighlightSection.tsx | A section component to briefly explain what makes me different from others
-import emoji1 from '../../assets/images/emoji1.png';
+import emoji_wave_1280x1280 from '../../assets/images/emoji_wave_1280x1280.png';
 import { ChevronRight } from "lucide-react";
 import { useLanguage } from '../../hooks/useLanguage';
 
@@ -13,14 +13,11 @@ export default function HighlightSection() {
         <div className="flex flex-col lg:flex-row items-center gap-8">
           <div className="relative w-full max-w-[300px]">
             <img 
-              src={emoji1} 
+              src={emoji_wave_1280x1280} 
               alt="Emoji 1" 
               className="w-full h-full object-contain relative z-10" 
               style={{
-                height: '291px',
                 maskImage: 'linear-gradient(180deg, #000000 60.2882179054054%, rgba(0, 0, 0, 0) 100%)',
-                overflow: 'visible',
-                width: '270px',
                 zIndex: 5,
               }}
             />

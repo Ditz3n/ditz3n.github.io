@@ -4,8 +4,8 @@ import { SpaceBackground } from '../emoji_background/SpaceBackground';
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { useLanguage } from '../../hooks/useLanguage';
 import ContactButton from '../reusable/ContactButton';
-import emoji2 from '../../assets/images/emoji2.png';
-import emoji4 from '../../assets/images/emoji4.png';
+import emoji_v_sign_320x320 from '../../assets/images/emoji_v_sign_320x320.png';
+import emoji_pray_1280x1200 from '../../assets/images/emoji_pray_1280x1280.png';
 
 export default function IntroductionSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -91,7 +91,7 @@ export default function IntroductionSection() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"> 
             <div className="flex items-center gap-2">
               <img 
-                src={emoji4} 
+                src={emoji_v_sign_320x320} 
                 alt="Mads' avatar" 
                 className="w-12 h-12 object-contain rounded-full"
               />
@@ -147,12 +147,12 @@ export default function IntroductionSection() {
           }}
         ></div>
         <img 
-          src={emoji2} 
+          src={emoji_pray_1280x1200} 
           alt='Emoji 1' 
           className='w-auto h-[90%] object-contain absolute left-1/2 transform -translate-x-1/2 z-4'
           style={{ bottom: `${-scrollY * 0.2}px` }}
         />
-        <div className="absolute bottom-0 left-0 w-full h-1/6 bg-gradient-to-t from-black/30 to-transparent pointer-events-none z-4"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1/5 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-4"></div>
         <SpaceBackground meteorCount={5} starCount={50} />
       </div>
     </section>

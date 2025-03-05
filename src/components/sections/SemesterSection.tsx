@@ -88,11 +88,11 @@ export default function SemesterSection() {
                     style={{ width: `${progressData.progressPercentage}%` }}
                   ></div>
                 </div>
-                <div className="flex justify-between mt-2">
+                <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start mt-2">
                   <span className="text-gray-500">{progressData.progressPercentage.toFixed(2)}%</span>
                   <a
                     href="https://bachelor.au.dk/softwareteknologi"
-                    className="text-blue-400 hover:underline"
+                    className="text-blue-400 hover:underline mt-1 sm:mt-0"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

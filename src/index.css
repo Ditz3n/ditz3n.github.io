@@ -16,14 +16,17 @@ body, html {
 /* Animations for the meteor and twinkle section behind the emoji in introduction section */
 @keyframes meteor {
   0% {
-    transform: translateX(0) translateY(0) rotate(-45deg);
+    transform: rotate(-360deg) translateX(0);
+    opacity: 0;
+  }
+  20% {
     opacity: 1;
   }
-  70% {
+  80% {
     opacity: 1;
   }
   100% {
-    transform: translateX(-500px) translateY(500px) rotate(-45deg);
+    transform: rotate(-360deg) translateX(-1000px);
     opacity: 0;
   }
 }

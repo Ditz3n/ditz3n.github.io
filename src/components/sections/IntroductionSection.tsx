@@ -1,5 +1,5 @@
 // IntroductionSection Component | The introduction section of the landing page
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { SpaceBackground } from '../emoji_background/SpaceBackground';
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { useLanguage } from '../../hooks/useLanguage';
@@ -25,6 +25,10 @@ export default function IntroductionSection() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const spaceBackground = useMemo(() => (
+    <SpaceBackground meteorCount={5} starCount={50} />
+  ), []);
 
   // Effect to update height and ensure correct display of section items on resize
   useEffect(() => {
@@ -153,7 +157,7 @@ export default function IntroductionSection() {
           style={{ bottom: `${-scrollY * 0.2}px` }}
         />
         <div className="absolute bottom-0 left-0 w-full h-1/5 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-4"></div>
-        <SpaceBackground meteorCount={5} starCount={50} />
+        {spaceBackground}
       </div>
     </section>
   );

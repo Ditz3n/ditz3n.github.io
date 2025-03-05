@@ -46,6 +46,10 @@ Portfolio 2.0 is my modern, interactive personal portfolio website built with Re
 
 ## 📄 Release History
 
+### 1.3
+
+- Fixed meteors re-render on every scroll event, which reset their animations.
+
 ### 1.2
 
 - Fixed Memojis being low quality on some devices by upscaling the images

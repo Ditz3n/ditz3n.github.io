@@ -32,7 +32,7 @@ export const projectsData: Project[] = [
             en: 'Second attempt at building my personal portfolio.'
         },
         githubUrl: 'https://github.com/Ditz3n/Portfolio-2.0',
-        deployedUrl: 'https://ditz3n.github.io',
+        // deployedUrl: 'https://ditz3n.github.io', // Deployed but wanted to redirect to the repository instead
         image: `${portfolio2}`	
     },
     {

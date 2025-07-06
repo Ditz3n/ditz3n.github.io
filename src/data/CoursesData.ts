@@ -44,11 +44,11 @@ interface Course {
       { id: 'ESPRJ-01', name: { da: 'Ingeniørpraktik', en: 'Engineering Internship' }, semester: 5, ects: 30, completed: false },
   
       // 6. semester (self-chosen courses)
-      { id: 'SWWAO-01', name: { da: 'Webarkitektur og orkestrering', en: 'Web Architecture and Orchestration' }, semester: 6, ects: 10, completed: false },
-      { id: 'SWITS-01', name: { da: 'IT-sikkerhed', en: 'IT Security' }, semester: 6, ects: 5, completed: false },
-      { id: 'SWMAL-01', name: { da: 'Machine Learning', en: 'Human-centered Design' }, semester: 6, ects: 5, completed: false },
-      { id: 'SWMAD-01', name: { da: 'Mobile Application Development', en: 'Human-centered Design' }, semester: 6, ects: 5, completed: false },
-      { id: 'STTHCD-01', name: { da: 'Human-centered Design', en: 'Human-centered Design' }, semester: 6, ects: 5, completed: false },
+      { id: 'SWWAO-01', name: { da: 'Webarkitektur og orkestrering', en: 'Web Architecture and Orchestration' }, semester: 6, ects: 10, completed: true },
+      { id: 'SWITS-01', name: { da: 'IT-sikkerhed', en: 'IT Security' }, semester: 6, ects: 5, completed: true },
+      { id: 'SWMAL-01', name: { da: 'Machine Learning', en: 'Human-centered Design' }, semester: 6, ects: 5, completed: true },
+      { id: 'SWMAD-01', name: { da: 'Mobile Application Development', en: 'Human-centered Design' }, semester: 6, ects: 5, completed: true },
+      { id: 'STTHCD-01', name: { da: 'Human-centered Design', en: 'Human-centered Design' }, semester: 6, ects: 5, completed: true },
   
       // 7. semester (bachelor project)
       { id: 'VALGFRI', name: { da: 'Valgfrie kurser', en: 'Elective Courses' }, semester: 7, ects: 10, completed: false },

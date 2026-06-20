@@ -4,39 +4,125 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # allows manually triggering a run from the Actions tab
+
+# Cancel any in-progress run on this branch if a new commit is pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: 20
+
+permissions:
+  contents: read
 
 jobs:
-  build:
-    name: Build
+  # Job 0: Clean install, fails fast before spending CI minutes on the rest
+  install:
+    name: Install dependencies
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
 
+      # min-release-age requires a recent npm CLI (11.10+); Node 20's bundled
+      # npm may be older, so upgrade explicitly before relying on the flag.
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
+      # Refuse to install any package version published less than 3 days ago.
+      # Most malicious/compromised npm versions get caught and pulled within
+      # hours to a couple of days, so this is a real (if imperfect) defense
+      # against supply-chain attacks landing in a build automatically.
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm ci --ignore-scripts --no-audit --min-release-age=3
+
+  # Job 1: Security audit (runs in parallel with lint and typecheck)
+  security_audit:
+    name: Security audit
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm install -g npm@latest
+      - run: npm ci --ignore-scripts --no-audit --min-release-age=3
+      # Stricter than "critical only" - fails on high severity too
+      - name: Audit dependencies
+        run: npm audit --audit-level=high --omit=dev
+
+  # Job 2: Linting
+  linting:
+    name: Lint
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm install -g npm@latest
+      - run: npm ci --ignore-scripts --no-audit --min-release-age=3
+      - run: npm run lint
+
+  # Job 3: Type checking
+  type_checking:
+    name: Type check
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm install -g npm@latest
+      - run: npm ci --ignore-scripts --no-audit --min-release-age=3
+      - run: npx tsc --noEmit
+
+  # Job 4: Production build
+  build:
+    name: Build
+    needs: [security_audit, linting, type_checking]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm install -g npm@latest
+      - run: npm ci --ignore-scripts --no-audit --min-release-age=3
 
       - name: Build project
-        run: |
-          npm run build
+        run: npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
           name: production-files
           path: ./dist
+          retention-days: 7
 
+  # Job 5: Deploy to GitHub Pages
   deploy:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-
+    permissions:
+      contents: write # peaceiris/actions-gh-pages needs this to push to gh-pages
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4

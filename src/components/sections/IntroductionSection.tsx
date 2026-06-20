@@ -1,6 +1,6 @@
 // IntroductionSection Component | The introduction section of the landing page
 import { useEffect, useMemo, useRef, useState } from "react";
-import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import emoji_pray_1280x1200 from "../../assets/images/emoji_pray_1280x1280.png";
 import emoji_v_sign_320x320 from "../../assets/images/emoji_v_sign_320x320.png";
 import { useLanguage } from "../../hooks/useLanguage";
@@ -125,12 +125,12 @@ export default function IntroductionSection() {
               </a>
 
               <a
-                href="https://www.instagram.com/ditz3n/"
+                href="https://github.com/ditz3n"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <button className="w-12 h-12 flex items-center justify-center bg-transparent border border-[#292929] rounded-[12px] text-white/80 hover:bg-white/5 transition-all duration-300 hover:border-white/30 hover:text-white/90 cursor-pointer">
-                  <FaInstagram size={24} />
+                  <FaGithub size={24} />
                 </button>
               </a>
 

@@ -1,5 +1,5 @@
 // Stars.tsx | A component that creates a starry background with random generated twinkling stars
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // interface for StarProps
 interface StarProps {
@@ -31,7 +31,7 @@ export function Stars({ count = 100 }: StarProps) {
       animationDelay: Math.random() * 10 + "s", // Delay up to 10 seconds
       opacity: Math.random() * 0.5 + 0.5, // Opacity between 0.5-1
     }));
-    
+
     setStars(starArray);
   }, [count]);
 

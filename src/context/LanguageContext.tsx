@@ -1,5 +1,5 @@
 // context/LanguageContext.tsx | The context provider for the language, which automatically sets the language based on the user's browser language
-import { useState, useEffect, ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { LanguageContext } from "./LanguageContextTypes";
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {

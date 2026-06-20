@@ -7,4 +7,6 @@ export interface LanguageContextProps {
 }
 
 // Create a context for the language
-export const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
+export const LanguageContext = createContext<LanguageContextProps | undefined>(
+  undefined,
+);

@@ -3,7 +3,7 @@
 <img src="src/assets/images/emoji_computer_640x640.png" width="150" alt="Logo" />
 </a>
 
-**<h1> &lt;Portfolio 2.0 /&gt; </h1>**
+**`<h1>` &lt;Portfolio 2.0 /&gt; `</h1>`**
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
@@ -45,6 +45,10 @@ Portfolio 2.0 is my modern, interactive personal portfolio website built with Re
 - **EmailJs**: A client-side JavaScript library for sending emails directly from your code without server dependencies.
 
 ## 📄 Release History
+
+### 1.4
+
+- Updated UI to reflect graduation status, and replaced _Clarity_ project with _Chroniqo_ bachelors project.
 
 ### 1.3
 

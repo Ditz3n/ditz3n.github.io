@@ -107,8 +107,8 @@ export default function IntroductionSection() {
                 </h1>
                 <p className="text-sm text-white/60">
                   {language === "da"
-                    ? "Softwareingeniørstuderende"
-                    : "Software Engineering Student"}
+                    ? "Softwareingeniør "
+                    : "Software Engineering"}
                 </p>
               </div>
             </div>

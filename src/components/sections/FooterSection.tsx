@@ -62,6 +62,15 @@ export default function FooterSection() {
           rel="noreferrer"
           className="text-blue-400 hover:underline"
         >
+          Vite
+        </a>
+        ,{" "}
+        <a
+          href="https://reactjs.org/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-400 hover:underline"
+        >
           React
         </a>
         ,{" "}
